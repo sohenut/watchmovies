@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTh, faBars } from '@fortawesome/free-solid-svg-icons';
-import {MovieInfiniteScrollComponent} from '../../../views/views/movie-infinite-scroll.component';
-import {URLService} from '../../../util/movie/URL';
-import {MovieGridComponent} from '../../../views/views/movie-grid.component';
+import { MovieInfiniteScrollComponent } from '../../../views/views/movie-infinite-scroll.component';
+import { URLService } from '../../../util/movie/URL';
+import { MovieGridComponent } from '../../../views/views/movie-grid.component';
 
 @Component({
   selector: 'app-home-popular',
@@ -22,14 +22,10 @@ export class HomePopularComponent implements OnInit {
   faTh = faTh;
   faBars = faBars;
 
-  apiKey = localStorage.getItem('TMDb-Key') || '';
+  apiKey = localStorage.getItem('TMDb-Key') || ''; // apiKey를 클래스 변수로 유지
   currentView = 'grid';
 
-  constructor(
-    private urlService: URLService
-
-  ) {
-  }
+  constructor(private urlService: URLService) {}
 
   ngOnInit(): void {
     this.disableScroll();
@@ -52,7 +48,9 @@ export class HomePopularComponent implements OnInit {
     document.body.style.overflow = 'auto';
   }
 
+  // getURL4PopularMovies 메서드에서 apiKey를 직접 사용하도록 수정
   fetFetchURL(): string {
-    return this.urlService.getURL4PopularMovies(this.apiKey);
+    // apiKey를 여기서 사용하지 않고 URLService 메서드에서 처리하도록 해야 한다.
+    return this.urlService.getURL4PopularMovies(1); // page 값은 1로 고정, apiKey는 내부에서 사용
   }
 }

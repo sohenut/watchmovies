@@ -1,7 +1,6 @@
-import axios from "axios";
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
- // 환경 설정 가져오기
+import axios from 'axios';
+import { environment } from '../../../environments/environment'; // 환경 설정 가져오기
 
 @Injectable({
   providedIn: 'root'

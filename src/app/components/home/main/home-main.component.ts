@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
-import {URLService} from '../../../util/movie/URL';
-import {BannerComponent} from '../../../views/home-main/banner.component';
-import {MovieRowComponent} from '../../../views/home-main/movie-row.component';
+import { URLService } from '../../../util/movie/URL';
+import { BannerComponent } from '../../../views/home-main/banner.component';
+import { MovieRowComponent } from '../../../views/home-main/movie-row.component';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,6 @@ import {MovieRowComponent} from '../../../views/home-main/movie-row.component';
     MovieRowComponent
   ]
 })
-
 export class HomeMainComponent implements OnInit, OnDestroy {
   faSearch = faSearch;
   faUser = faUser;
@@ -30,9 +29,10 @@ export class HomeMainComponent implements OnInit, OnDestroy {
   constructor(
     private urlService: URLService
   ) {
-    this.popularMoviesUrl = urlService.getURL4PopularMovies(this.apiKey);
-    this.newReleasesUrl = urlService.getURL4ReleaseMovies(this.apiKey);
-    this.actionMoviesUrl = urlService.getURL4GenreMovies(this.apiKey, '28');
+    // API 호출 시, 인자는 넘기지 않습니다. 내부적으로 apiKey를 사용하도록 변경됨
+    this.popularMoviesUrl = urlService.getURL4PopularMovies(1);  // 1은 page 값
+    this.newReleasesUrl = urlService.getURL4ReleaseMovies(1);  // 1은 page 값
+    this.actionMoviesUrl = urlService.getURL4GenreMovies('28', 1);  // 1은 page 값
   }
 
   ngOnInit() {
@@ -45,7 +45,8 @@ export class HomeMainComponent implements OnInit, OnDestroy {
   }
 
   private async loadFeaturedMovie() {
-    this.featuredMovie = await this.urlService.fetchFeaturedMovie(this.apiKey);
+    // apiKey를 넘길 필요 없이 내부에서 사용하도록 변경
+    this.featuredMovie = await this.urlService.fetchFeaturedMovie();
   }
 
   private initializeScrollListener() {
