@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
 
       if (user) {
         if (saveToken) {
-          localStorage.setItem('TMDb-Key', user.password);
+          localStorage.setItem('TMDb-Key', environment.TMDB_API_KEY);
         }
         observer.next(user);
         observer.complete();

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {MovieSearchComponent} from '../../views/search/movie-search.component';
 import {SearchOptions} from '../../../models/types';
 import {MovieInfiniteScrollComponent} from '../../views/views/movie-infinite-scroll.component';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-home-search',
@@ -12,7 +13,7 @@ import {MovieInfiniteScrollComponent} from '../../views/views/movie-infinite-scr
   styleUrls: ['./home-search.component.css']
 })
 export class HomeSearchComponent {
-  apiKey: string = localStorage.getItem('TMDb-Key') || '';
+  apiKey: string = localStorage.getItem('TMDb-Key') || environment.TMDB_API_KEY;
   genreId: string = '28';
   ageId: number = -1;
   sortId: string = 'all';

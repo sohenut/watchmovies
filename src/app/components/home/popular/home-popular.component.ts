@@ -5,6 +5,7 @@ import { faTh, faBars } from '@fortawesome/free-solid-svg-icons';
 import {MovieInfiniteScrollComponent} from '../../../views/views/movie-infinite-scroll.component';
 import {URLService} from '../../../util/movie/URL';
 import {MovieGridComponent} from '../../../views/views/movie-grid.component';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-home-popular',
@@ -22,7 +23,7 @@ export class HomePopularComponent implements OnInit {
   faTh = faTh;
   faBars = faBars;
 
-  apiKey = localStorage.getItem('TMDb-Key') || '';
+  apiKey = localStorage.getItem('TMDb-Key') || environment.TMDB_API_KEY;
   currentView = 'grid';
 
   constructor(
@@ -53,6 +54,6 @@ export class HomePopularComponent implements OnInit {
   }
 
   fetFetchURL(): string {
-    return this.urlService.getURL4PopularMovies(this.apiKey);
+    return this.urlService.getURL4PopularMovies(1);
   }
 }
