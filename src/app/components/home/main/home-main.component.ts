@@ -3,6 +3,7 @@ import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import { URLService } from '../../../util/movie/URL';
 import { BannerComponent } from '../../../views/home-main/banner.component';
 import { MovieRowComponent } from '../../../views/home-main/movie-row.component';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class HomeMainComponent implements OnInit, OnDestroy {
   faSearch = faSearch;
   faUser = faUser;
 
-  apiKey: string = localStorage.getItem('TMDb-Key') || '';
+  apiKey: string = localStorage.getItem('TMDb-Key') || environment.TMDB_API_KEY;
   featuredMovie: any = null;
   popularMoviesUrl: string = '';
   newReleasesUrl: string = '';

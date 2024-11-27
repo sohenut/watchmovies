@@ -5,6 +5,7 @@ import { faTh, faBars } from '@fortawesome/free-solid-svg-icons';
 import { MovieInfiniteScrollComponent } from '../../../views/views/movie-infinite-scroll.component';
 import { URLService } from '../../../util/movie/URL';
 import { MovieGridComponent } from '../../../views/views/movie-grid.component';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-home-popular',
@@ -22,7 +23,7 @@ export class HomePopularComponent implements OnInit {
   faTh = faTh;
   faBars = faBars;
 
-  apiKey = localStorage.getItem('TMDb-Key') || ''; // apiKey를 클래스 변수로 유지
+  apiKey = localStorage.getItem('TMDb-Key') || environment.TMDB_API_KEY; // apiKey를 클래스 변수로 유지
   currentView = 'grid';
 
   constructor(private urlService: URLService) {}
